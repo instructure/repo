@@ -1122,7 +1122,7 @@ class Project(object):
       branch.remote.projectname = self.name
       branch.remote.Save()
 
-    url = branch.remote.ReviewUrl(self.UserEmail)
+    url = "git@github.com:instructure/" + self.name + ".git"
     if url is None:
       raise UploadError('review not configured')
     cmd = ['push']
@@ -1144,8 +1144,7 @@ class Project(object):
     if draft:
       upload_type = 'drafts'
 
-    ref_spec = '%s:refs/%s/%s' % (R_HEADS + branch.name, upload_type,
-                                  dest_branch)
+    ref_spec = '%s' % (R_HEADS + branch.name)
     if auto_topic:
       ref_spec = ref_spec + '/' + branch.name
     if not url.startswith('ssh://'):
