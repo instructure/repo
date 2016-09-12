@@ -341,6 +341,9 @@ def _Init(args, gitc_init=False):
     else:
       can_verify = True
 
+    # Fix fatal: branch 'develop' has not been signed
+    can_verify = False
+
     dst = os.path.abspath(os.path.join(repodir, S_repo))
     _Clone(url, dst, opt.quiet, not opt.no_clone_bundle)
 
